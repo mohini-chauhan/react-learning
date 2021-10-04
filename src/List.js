@@ -9,11 +9,20 @@ export default class List extends Component {
     };
   }
   handleChange = (e) => {
-    this.setState({ name: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
     console.log(this.state);
   };
   handleSubmit = (e) => {
     e.preventDefault();
+    if (!(this.state.name && this.state.contact)) return;
+    const data = {
+      name: this.state.name,
+      contact: this.state.contact,
+    };
+    this.setState((prevState) => {
+      return { phoneBook: prevState.phoneBook.concat(data) };
+    });
+    console.log(this.state.phoneBook);
   };
   render() {
     return (
@@ -41,6 +50,24 @@ export default class List extends Component {
           <br />
           <button type="submit">Submit</button>
         </form>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Contact No.</th>
+          </tr>
+          {this.state.phoneBook.length > 0 ? (
+            this.state.phoneBook.map((user) => (
+              <tr>
+                <td>{user.name}</td>
+                <td>{user.contact}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={3}>&nbsp;</td>
+            </tr>
+          )}
+        </table>
       </div>
     );
   }
