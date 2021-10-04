@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import { Component } from 'react';
-import List from './List.js';
+import Phonebook from './Phonebook.js';
 
 //counter using functional component//
 function Counter() {
@@ -64,7 +64,7 @@ export default function App() {
       <Counter />
       <Counter1 text={1} />
       <Counter1 text={5} />
-      <List />
+      <Phonebook />
     </div>
   );
 }
